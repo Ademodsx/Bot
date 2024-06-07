@@ -1,6 +1,7 @@
 const { Client } = require('whatsapp-web.js');
 const mysql = require('mysql');
 const qrcode = require('qrcode-terminal');
+const usePairingCode = true;
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -15,6 +16,12 @@ connection.connect((err) => {
         return;
     }
     console.log('Connected to database!');
+
+    const question = (text) => {
+    const rl = readline.createInterface({ input:process.stdin.output: process.stdout });
+    return new Promise((resolve) => { rl.quetion(text, resolve)
+    })
+    ;
 
     const createTableQuery = `CREATE TABLE IF NOT EXISTS playerucp (
         id INT AUTO_INCREMENT PRIMARY KEY,
